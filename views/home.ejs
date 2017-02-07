@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/public/css/main.css" />
         <script src="/public/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     </head>
     <body>
         <%- include('shared/menu') %>
@@ -16,87 +17,57 @@
             <h1>Liste des peronnes</h1>
 
             <ul>
-            <% persons.forEach(function(p) { %>
-                <li><%= p.firstname + ' ' + p.lastname %></li>
-            <% }); %>
+            
             </ul>
-            <div class="btn-toolbar">
-    <button class="btn btn-primary">New User</button>
-    <button class="btn">Import</button>
-    <button class="btn">Export</button>
-</div>
+            
+            
+           
 <div class="well">
-    <table class="table">
+    <table id="zipTable" class="table">
+         <select for="zipTable">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="30">30</option>
+            </select>
       <thead>
         <tr>
-          <th>#</th>
+          <th>Id</th>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Username</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Company</th>
+          <th>Departement</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Country</th>
+          <th>Ip Adresse</th>
           <th style="width: 36px;"></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Tompson</td>
-          <td>the_mark7</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Ashley</td>
-          <td>Jacobs</td>
-          <td>ash11927</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Audrey</td>
-          <td>Ann</td>
-          <td>audann84</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>John</td>
-          <td>Robinson</td>
-          <td>jr5527</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Aaron</td>
-          <td>Butler</td>
-          <td>aaron_butler</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>Chris</td>
-          <td>Albert</td>
-          <td>cab79</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
+          
+          <% persons.forEach(function(p) { %>
+                <tr>
+                    <td><%= p._id %></td>
+                    <td><%= p.firstname %></td>
+                    <td><%= p.lastname %></td>
+                    <td><%= p.age %></td>
+                    <td><%= p.gender %></td>
+                    <td><%= p.company %></td>
+                    <td><%= p.departement %></td>
+                    <td><%= p.email %></td>
+                    <td><%= p.city %></td>
+                    <td><%= p.country %></td>
+                    <td><%= p.ip_adresse %></td>
+          
+                </tr>
+                
+          <% }); %>
+      
+       
+       
       </tbody>
     </table>
 </div>
@@ -110,19 +81,91 @@
         <li><a href="#">Next</a></li>
     </ul>
 </div>
-<div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Delete Confirmation</h3>
-    </div>
-    <div class="modal-body">
-        <p class="error-text">Are you sure you want to delete the user?</p>
-    </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-        <button class="btn btn-danger" data-dismiss="modal">Delete</button>
-    </div>
-</div>
+
         </div>
     </body>
 </html>
+
+<script>(function ($) {
+    $.fn.page = function (PageSize) {
+        $(this).addClass("page-table")
+        var tableId = $(this).attr("id");
+        
+        //if id is not defined for table. Do Nothing.
+        if (typeof tableId == 'undefined') {
+            return this;
+        };
+
+        //Check for controls for this table and remove
+        $('.pagination[for="' + tableId + '"]').remove();
+
+        //Check for valid variable for pageSize if not set to default of 10
+        if (typeof PageSize == 'number') {
+            PageSize = parseInt(PageSize);
+        } else if (typeof PageSize == 'string') {
+            if ($.isNumeric(PageSize) == true) {
+                PageSize = parseInt(PageSize);
+            } else {
+                PageSize = 10;
+            }
+        } else {
+            PageSize = 10;
+        }
+
+        //Add pagination <ul> to hold controls
+        $(this).after('<ul class="pagination" for="' + tableId + '"></ul>');
+
+        //Add a pager control for each page
+        var currpage = 1;
+        var item = 1;
+        $(this).find('tr:has(td)').each(function () {
+
+            $(this).attr('data-page', currpage);
+
+            if ((item % PageSize) == 0) {
+                currpage = currpage + 1;
+                $('.pagination[for="' + tableId + '"]').append('<li><a href="#" data-page="' + currpage + '" for="' + tableId + '">' + currpage + '</a></li>')
+            } else if (item == 1) {
+                $('.pagination[for="' + tableId + '"]').append('<li><a href="#" class="active" data-page="' + currpage + '" for="' + tableId + '">' + currpage + '</a></li>')
+            }
+            item = item + 1;
+        });
+
+        //load 1st page
+        pageNumber(1, tableId);
+        $(this).next('.pagination[for="' + tableId + '"]').find('a').on('click', function (e) {
+            e.preventDefault();
+            pageNumber($(this).attr('data-page'), this);
+        });
+        return this;
+    }
+
+    // Private function page change
+    function pageNumber(iPage, element) {
+        if (typeof element == 'string') {
+            var target = element;
+        } else {
+            var target = $(element).attr("for");
+        }
+
+
+        if (typeof target == 'undefined') {
+            $('.page-table tr:has(td)').hide();
+            $('.page-table tr[data-page="' + iPage + '"]').show();
+        } else {
+            $('#' + target + ' tr:has(td)').hide();
+            $('#' + target + ' tr[data-page="' + iPage + '"]').show();
+        }
+    };
+
+})(jQuery);
+
+//End of plugin Beginning of Initialization
+
+//if no page size is passed default is 10. Below we are setting page size to 20
+$('#zipTable').page(20);
+
+//Changes page size from select value
+$('select[for="zipTable"]').on('change', function () {
+    $('#zipTable').page($(this).val());
+});</script>

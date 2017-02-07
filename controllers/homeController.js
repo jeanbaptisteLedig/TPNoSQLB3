@@ -6,6 +6,7 @@ router.get('/', function(req, res) {
     // Permet de retrouver des résultats sur un modèle
     Person.find({}).then(function(persons) {
         // Permet d'afficher une vue et de lui passer des paramètres
+        console.log(persons);
         res.render('home.ejs', { persons: persons});
     });
 
@@ -37,7 +38,5 @@ router.get('/list', function(req, res) {
     res.render('list.ejs');
 });
 
-router.post('/list', function(req, res) {
-    res.redirect('/list');
-});
+
 module.exports = router;
