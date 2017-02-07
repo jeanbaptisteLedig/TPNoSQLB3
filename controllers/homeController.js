@@ -78,5 +78,32 @@ router.get('/stat', function(req, res) {
 
 });
 
+router.get('/loadData', function(req, res) {
+    var fs = require("fs");
+
+    fs.readFile('./data/persons.csv', 'utf-8', function(err, data) {
+        if (err) throw err;
+        var lines = data.trim().split('\n');
+        for (var i=1; i < lines.length; i++){
+
+            var arrayLines = lines[i].split(',');
+            var person = new Person({
+                                firstname : arrayLines[0],
+                                lastname : arrayLines[1],
+                                gender : arrayLines[2],
+                                age : arrayLines[3],
+                                company : arrayLines[4],
+                                departement : arrayLines[5],
+                                email : arrayLines[6],
+                                city : arrayLines[7],
+                                country : arrayLines[8],
+                                ip_adresse : arrayLines[9],
+            })
+            person.save().then(function(personSaved){
+                //console.log("ok")
+            });
+        }
+    })
+});
 
 module.exports = router;

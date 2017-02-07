@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/Azunyth/TPNoSQLB3#readme",
   "dependencies": {
+    "babyparse": "^0.4.6",
     "body-parser": "^1.16.0",
     "ejs": "^2.5.5",
     "express": "^4.14.1",
+    "fs": "0.0.1-security",
     "mongoose": "^4.8.1"
   }
 }
