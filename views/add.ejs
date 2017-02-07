@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/public/css/main.css" />
+        <script src="/public/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('shared/menu') %>
+        <div class="container">
+            <a class="btn btn-danger pull-right" href="/">Retour</a>
+            <h1>Ajouter une personne</h1>
+            <form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Form Name</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Firstname">Firstname</label>  
+  <div class="col-md-4">
+  <input id="Firstname" name="Firstname" type="text" placeholder="Firstname" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="lastName">Lastname</label>  
+  <div class="col-md-4">
+  <input id="lastName" name="lastName" type="text" placeholder="Lastname" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Multiple Radios -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="gender">Gender</label>
+  <div class="col-md-4">
+  <div class="radio">
+    <label for="gender-0">
+      <input type="radio" name="gender" id="gender-0" value="M" checked="checked">
+      Male
+    </label>
+	</div>
+  <div class="radio">
+    <label for="gender-1">
+      <input type="radio" name="gender" id="gender-1" value="F">
+      Female
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Age">Age</label>  
+  <div class="col-md-4">
+  <input id="Age" name="Age" type="text" placeholder="Age" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Email">Email</label>  
+  <div class="col-md-4">
+  <input id="Email" name="Email" type="text" placeholder="Email" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Company">Company</label>  
+  <div class="col-md-4">
+  <input id="Company" name="Company" type="text" placeholder="Company" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Departement">Departement</label>  
+  <div class="col-md-4">
+  <input id="Departement" name="Departement" type="text" placeholder="Departement" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="City">City</label>  
+  <div class="col-md-4">
+  <input id="City" name="City" type="text" placeholder="City" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Country">Country</label>  
+  <div class="col-md-4">
+  <input id="Country" name="Country" type="text" placeholder="Country" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="ipAdresse">Adresse IP</label>  
+  <div class="col-md-4">
+  <input id="ipAdresse" name="ipAdresse" type="text" placeholder="Adresse IP" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="btnValider">Valider ou annuler</label>
+  <div class="col-md-8">
+    <button id="btnValider" name="btnValider" class="btn btn-success">Valider</button>
+    <button id="btnAnnuler" name="btnAnnuler" class="btn btn-danger">Annuler</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+        </div>
+    </body>
+</html>
