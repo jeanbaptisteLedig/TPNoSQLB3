@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/public/css/main.css" />
+        <script src="/public/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('shared/menu') %>
+        <div class="container">
+            <a class="btn btn-danger pull-right" href="/">Retour</a>
+
+
+<h1>Les hommes entre 20 et 40 ans travaillant chez Facebook ou Instagram</h1>
+<% personOne.forEach(function(p) { %>
+                <li><%= p.firstname + ' ' + p.lastname %></li>
+            <% }); %>
+            <h1>La femme la plus âgée travaillant à spotify</h1>
+            <% personTwo.forEach(function(p) { %>
+                <li><%= p.firstname + ' ' + p.lastname %></li>
+            <% }); %>
+            <h1>Le prénom des gens ayant une adresse IP en X.129.X.X</h1>
+        </div>
+   </body>
+</html>

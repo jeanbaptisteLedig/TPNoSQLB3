@@ -1,12 +1,14 @@
 var router = require('express').Router();
 var Person = require('../models/Person');
+var bodyParser = require('body-parser');
+//app.use(bodyParser.urlencoded({extended: false}));
 
 // Permet de créer une route qui map l'url "/" en GET
 router.get('/', function(req, res) {
     // Permet de retrouver des résultats sur un modèle
     Person.find({}).then(function(persons) {
         // Permet d'afficher une vue et de lui passer des paramètres
-        console.log(persons);
+       
         res.render('home.ejs', { persons: persons});
     });
 
@@ -31,11 +33,49 @@ router.get('/add', function(req, res) {
 });
 
 router.post('/add', function(req, res) {
-    res.redirect('/add');
+    var p = new Person( {
+        firstname : req.body.user.firstname,
+        lastname : req.body.user.lastname,
+        age : req.body.user.age,
+        gender : req.body.user.gender,
+        email : req.body.user.email,
+        company : req.body.user.company,
+        departement : req.body.user.departement,
+        city : req.body.user.city,
+        country : req.body.user.country,
+        ip_adresse : req.body.user.ip_adresse
+        
+        
+        
+    });
+    
+    p.save().then(function(personSaved){
+        res.render('hello.ejs', personSaved);
+    });
+   
 });
+
 
 router.get('/list', function(req, res) {
     res.render('list.ejs');
+});
+router.get('/loadData', function(req, res) {
+    res.render('loadData.ejs');
+});
+router.get('/stat', function(req, res) {
+     Person.find({
+    $and: [{"gender": "Male"},{"age": {$gte: 20,$lte: 40}},{$or: [{"company": "Voolith"},{"company": "Brightbean"}]}]
+    }).then(function(personOne){
+    
+    Person.find({
+    $and: [ { "company": "Buzzdog" }, {"gender": "Female" }]  }
+    ).sort({"age" : -1}).limit(1).then(function(personTwo){
+         
+    res.render('stat.ejs', { personOne: personOne, personTwo: personTwo});
+  });
+   
+});
+
 });
 
 

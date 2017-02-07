@@ -1,9 +1,14 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 // Permet de changer le système de promesses de mongo par celui de Node
 mongoose.Promise = global.Promise;
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 // Permet de definir un template engine
 app.set('view engine', 'ejs');

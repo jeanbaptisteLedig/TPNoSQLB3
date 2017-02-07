@@ -12,7 +12,7 @@
         <div class="container">
             <a class="btn btn-danger pull-right" href="/">Retour</a>
             <h1>Ajouter une personne</h1>
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="post" action="/add">
 <fieldset>
 
 <!-- Form Name -->
@@ -20,18 +20,18 @@
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Firstname">Firstname</label>  
+  <label class="col-md-4 control-label" for="firstname">Firstname</label>  
   <div class="col-md-4">
-  <input id="Firstname" name="Firstname" type="text" placeholder="Firstname" class="form-control input-md" required="">
+  <input id="firstname" name="user[firstname]" type="text" placeholder="Firstname" class="form-control input-md" required="">
     
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="lastName">Lastname</label>  
+  <label class="col-md-4 control-label" for="lastname">Lastname</label>  
   <div class="col-md-4">
-  <input id="lastName" name="lastName" type="text" placeholder="Lastname" class="form-control input-md" required="">
+  <input id="lastname" name="user[lastname]" type="text" placeholder="Lastname" class="form-control input-md" required="">
     
   </div>
 </div>
@@ -42,13 +42,13 @@
   <div class="col-md-4">
   <div class="radio">
     <label for="gender-0">
-      <input type="radio" name="gender" id="gender-0" value="M" checked="checked">
+      <input type="radio" name="user[gender]" id="gender-0" value="Male" checked="checked">
       Male
     </label>
 	</div>
   <div class="radio">
     <label for="gender-1">
-      <input type="radio" name="gender" id="gender-1" value="F">
+      <input type="radio" name="user[gender]" id="gender-1" value="Female">
       Female
     </label>
 	</div>
@@ -57,63 +57,63 @@
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Age">Age</label>  
+  <label class="col-md-4 control-label" for="age">Age</label>  
   <div class="col-md-4">
-  <input id="Age" name="Age" type="text" placeholder="Age" class="form-control input-md" required="">
+  <input id="age" name="user[age]" type="text" placeholder="Age" class="form-control input-md" required="">
     
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Email">Email</label>  
+  <label class="col-md-4 control-label" for="email">Email</label>  
   <div class="col-md-4">
-  <input id="Email" name="Email" type="text" placeholder="Email" class="form-control input-md" required="">
+  <input id="email" name="user[email]" type="text" placeholder="Email" class="form-control input-md" required="">
     
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Company">Company</label>  
+  <label class="col-md-4 control-label" for="company">Company</label>  
   <div class="col-md-4">
-  <input id="Company" name="Company" type="text" placeholder="Company" class="form-control input-md" required="">
+  <input id="company" name="user[company]" type="text" placeholder="Company" class="form-control input-md" required="">
     
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Departement">Departement</label>  
+  <label class="col-md-4 control-label" for="departement">Departement</label>  
   <div class="col-md-4">
-  <input id="Departement" name="Departement" type="text" placeholder="Departement" class="form-control input-md" required="">
+  <input id="departement" name="user[departement]" type="text" placeholder="Departement" class="form-control input-md" required="">
     
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="City">City</label>  
+  <label class="col-md-4 control-label" for="city">City</label>  
   <div class="col-md-4">
-  <input id="City" name="City" type="text" placeholder="City" class="form-control input-md">
+  <input id="city" name="user[city]" type="text" placeholder="City" class="form-control input-md">
     
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Country">Country</label>  
+  <label class="col-md-4 control-label" for="country">Country</label>  
   <div class="col-md-4">
-  <input id="Country" name="Country" type="text" placeholder="Country" class="form-control input-md">
+  <input id="country" name="user[country]" type="text" placeholder="Country" class="form-control input-md">
     
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="ipAdresse">Adresse IP</label>  
+  <label class="col-md-4 control-label" for="ip_adresse">Adresse IP</label>  
   <div class="col-md-4">
-  <input id="ipAdresse" name="ipAdresse" type="text" placeholder="Adresse IP" class="form-control input-md">
+  <input id="ip_adresse" name="user[ip_adresse]" type="text" placeholder="Adresse IP" class="form-control input-md">
     
   </div>
 </div>

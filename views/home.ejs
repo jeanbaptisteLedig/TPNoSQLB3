@@ -14,7 +14,7 @@
             <a class="btn btn-primary pull-right" href="/add">
                 <span class="glyphicon glyphicon-plus"></span> Ajouter une personne
             </a>
-            <h1>Liste des peronnes</h1>
+            <h1>Liste des personnes</h1>
 
             <ul>
             
@@ -27,8 +27,8 @@
          <select for="zipTable">
                 <option value="5">5</option>
                 <option value="10">10</option>
-                <option value="20" selected>20</option>
-                <option value="30">30</option>
+                <option value="50" selected>50</option>
+                <option value="100">100</option>
             </select>
       <thead>
         <tr>
@@ -42,7 +42,6 @@
           <th>Email</th>
           <th>City</th>
           <th>Country</th>
-          <th>Ip Adresse</th>
           <th style="width: 36px;"></th>
         </tr>
       </thead>
@@ -60,7 +59,7 @@
                     <td><%= p.email %></td>
                     <td><%= p.city %></td>
                     <td><%= p.country %></td>
-                    <td><%= p.ip_adresse %></td>
+                    
           
                 </tr>
                 
