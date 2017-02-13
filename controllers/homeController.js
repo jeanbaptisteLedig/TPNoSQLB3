@@ -4,14 +4,53 @@ var bodyParser = require('body-parser');
 //app.use(bodyParser.urlencoded({extended: false}));
 
 // Permet de créer une route qui map l'url "/" en GET
-router.get('/', function(req, res) {
+router.get('/page/:page', function(req, res) {
+    if(!req.params.page){
+    next()
+  }
     // Permet de retrouver des résultats sur un modèle
     Person.find({}).then(function(persons) {
-        // Permet d'afficher une vue et de lui passer des paramètres
-       
-        res.render('home.ejs', { persons: persons});
+      var currentPage=parseInt(req.params.page);
+      var nbPage = persons.length/100;
+      var min,limit,pageMin,pageMax;
+
+      pageMin = currentPage-4;
+      
+
+      if(currentPage<=0){
+        currentPage=1;
+      }
+        if(currentPage<=nbPage){
+            pageMax= currentPage;
+        }else{
+            pageMax= currentPage+4;
+        }
+      min=currentPage*100-100;
+      
+
+      Person.find({}).skip(min).limit(limit).then(function(p) {
+          res.render('home.ejs', { persons: p, pages: nbPage, current: currentPage, pmi: pageMin, pma: pageMax});
+      });
     });
 
+});
+router.get('/', function(req, res) {
+  Person.find({}).then(function(persons) {
+    var nbPage = persons.length/100;
+    var currentPage=parseInt(1);
+    var min,limit;
+
+    if(currentPage<=0){
+      currentPage=1;
+    }
+    min=currentPage*100-100;
+    limit=100;
+
+    Person.find({}).skip(min).limit(limit).then(function(p) {
+      // Permet d'afficher une vue et de lui passer des paramètre
+      res.render('home.ejs', { persons: p, pages: nbPage, current: currentPage});
+    });
+  });
 });
 
 // Permet de créer une route qui map l'url "/hello" en GET
