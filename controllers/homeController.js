@@ -70,10 +70,19 @@ router.get('/stat', function(req, res) {
     Person.find({
     $and: [ { "company": "Buzzdog" }, {"gender": "Female" }]  }
     ).sort({"age" : -1}).limit(1).then(function(personTwo){
+        
+    Person.find({ip_address : { $regex : /^([0-9]{1,3}.)129\..*/ } })
+            .then(function(personThree){
+        
+    Person.find({
+              "email": /[0-9]/ })
+              .count().then(function(personFour){
+                
          
-    res.render('stat.ejs', { personOne: personOne, personTwo: personTwo});
+    res.render('stat.ejs', { personOne: personOne, personTwo: personTwo, personThree: personThree, personFour: personFour});
   });
-   
+});
+});
 });
 
 });

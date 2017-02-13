@@ -22,6 +22,14 @@
                 <li><%= p.firstname + ' ' + p.lastname %></li>
             <% }); %>
             <h1>Le prénom des gens ayant une adresse IP en X.129.X.X</h1>
+            <% personThree.forEach(function(p) { %>
+                <li><%= p.firstname + ' ' + p.lastname %></li>
+            <% }); %>
+            <h1>Le nombre des gens contenant un nombre dans leur mail</h1>
+            <%= personFour %>
+                
+            <br>
+            <h1> je sais plus le dernier</h1>
         </div>
    </body>
 </html>
