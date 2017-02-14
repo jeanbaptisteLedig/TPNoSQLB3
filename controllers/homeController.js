@@ -146,10 +146,8 @@ router.get('/stat', function(req, res) {
 
 router.get('/loadData', function(req, res) {
     fs.readFile('./data/persons.csv', 'utf-8', function(err, data) {
-        if (err)
-            throw err;
-        else
-            console.log("ok")
+        if (err) throw err;
+
         var lines = data.trim().split('\n');
         for (var i=1; i < lines.length; i++){
 
@@ -165,7 +163,7 @@ router.get('/loadData', function(req, res) {
                                 city : arrayLines[7],
                                 country : arrayLines[8],
                                 ip_adresse : arrayLines[9],
-            })
+            });
             person.save().then(function(personSaved){
                 res.render('loadData.ejs');
             });
