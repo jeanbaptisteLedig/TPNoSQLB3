@@ -10,46 +10,9 @@
     <body>
         <%- include('shared/menu') %>
         <div class="container">
-            <form ref='uploadForm'
-                  id='uploadForm'
-                  action='http://localhost:1337/loadData'
-                  method='post'
-                  encType="multipart/form-data">
-                <input type="file" name="sampleFile" />
-                <input type='submit' value='Upload!' onsubmit="uploadFile()"/>
-            </form>
+            <p>
+                Persons added
+            </p>
         </div>
     </body>
-
-<script>
-    var express = require('express');
-    var fileUpload = require('express-fileupload');
-    var app = express();
-
-    // default options
-    function uploadFile(){
-        app.use(fileUpload());
-        app.post('/loadData', function(req, res) {
-            var sampleFile;
-
-            if (!req.files) {
-                res.send('No files were uploaded.');
-                return;
-            }
-
-            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-            sampleFile = req.files.sampleFile;
-
-            // Use the mv() method to place the file somewhere on your server
-            sampleFile.mv('/data/file.csv', function(err) {
-                if (err) {
-                    res.status(500).send(err);
-                }
-                else {
-                    res.send('File uploaded!');
-                }
-            });
-        });
-    }
-</script>
 </html>

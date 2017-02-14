@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var Person = require('../models/Person');
-var bodyParser = require('body-parser');
+var fs = require("fs");
+
 //app.use(bodyParser.urlencoded({extended: false}));
 
 //Permet de créer une route qui map l'url "/" en GET
@@ -98,9 +99,7 @@ router.post('/add', function(req, res) {
 router.get('/list', function(req, res) {
     res.render('list.ejs');
 });
-router.get('/loadData', function(req, res) {
-    res.render('loadData.ejs');
-});
+
 router.get('/stat', function(req, res) {
      Person.find({
     $and: [{"gender": "Male"},{"age": {$gte: 20,$lte: 40}},{$or: [{"company": "Voolith"},{"company": "Brightbean"}]}]
@@ -146,10 +145,11 @@ router.get('/stat', function(req, res) {
 });
 
 router.get('/loadData', function(req, res) {
-    var fs = require("fs");
-
     fs.readFile('./data/persons.csv', 'utf-8', function(err, data) {
-        if (err) throw err;
+        if (err)
+            throw err;
+        else
+            console.log("ok")
         var lines = data.trim().split('\n');
         for (var i=1; i < lines.length; i++){
 
@@ -167,10 +167,14 @@ router.get('/loadData', function(req, res) {
                                 ip_adresse : arrayLines[9],
             })
             person.save().then(function(personSaved){
-                //console.log("ok")
+                res.render('loadData.ejs');
             });
         }
     })
 });
+
+/*router.get('/loadData', function(req, res) {
+    res.render('loadData.ejs');
+});*/
 
 module.exports = router;
