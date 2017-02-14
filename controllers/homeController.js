@@ -3,7 +3,7 @@ var Person = require('../models/Person');
 var bodyParser = require('body-parser');
 //app.use(bodyParser.urlencoded({extended: false}));
 
-// Permet de créer une route qui map l'url "/" en GET
+//Permet de créer une route qui map l'url "/" en GET
 router.get('/page/:page', function(req, res) {
     if(!req.params.page){
     next()
