@@ -109,7 +109,7 @@ router.get('/stat', function(req, res) {
     $and: [ { "company": "Buzzdog" }, {"gender": "Female" }]  }
     ).sort({"age" : -1}).limit(1).then(function(personTwo){
         
-    Person.find({ip_address : { $regex : /^([0-9]{1,3}.)129\..*/ } })
+    Person.find({ip_adresse : { $regex : /^([0-9]{1,3}.)129\..*/ } })
             .then(function(personThree){
         
     Person.find({
@@ -165,7 +165,7 @@ router.get('/loadData', function(req, res) {
                                 city : arrayLines[7],
                                 country : arrayLines[8],
                                 ip_adresse : arrayLines[9],
-            })
+            });
             person.save().then(function(personSaved){
                 res.render('loadData.ejs');
             });
