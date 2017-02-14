@@ -30,6 +30,9 @@
                 
             <br>
             <h1> je sais plus le dernier</h1>
+             <% personFive.forEach(function(p) { %>
+            <li><%= p.company + " - " + p.percent*100 + " %" %></li>
+            <% }) %>
         </div>
    </body>
 </html>

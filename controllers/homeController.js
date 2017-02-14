@@ -116,14 +116,33 @@ router.get('/stat', function(req, res) {
     Person.find({
               "email": /[0-9]/ })
               .count().then(function(personFour){
+    Person.aggregate({
+                        
+                        $group:
+                        {
+                            _id:"$company",
+                            nbrFemmes:{$sum: {$cond: {if: {$eq:["$gender","Female"]}, then:1, else:0 } } },
+                            totalPersonnes:{$sum:1},
+                        }
+                        },
+                     {$project:
+                        {
+                            _id:0,
+                            company:"$_id",
+                            percent:{$divide:["$nbrFemmes","$totalPersonnes"]}
+                        }
+                        },
+                     {$sort:{percent:-1}},
+                     {$limit:1})
+                        .then(function(personFive){
                 
          
-    res.render('stat.ejs', { personOne: personOne, personTwo: personTwo, personThree: personThree, personFour: personFour});
+    res.render('stat.ejs', { personOne: personOne, personTwo: personTwo, personThree: personThree, personFour: personFour, personFive: personFive});
   });
+        });
 });
 });
 });
-
 });
 
 router.get('/loadData', function(req, res) {

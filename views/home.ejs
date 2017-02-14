@@ -90,6 +90,9 @@
                <% }else{ %>
                 <li class="page-item"><a class="page-link" href="/page/<%= current+1 %>">Next</a></li>
                 <% } %>
+                
+                
+               <li class="page-item"> <a class="page-link" disabled="disabled" href="/page/<%= current+10 %>">Next 10</a></li>
                 <li class="page-item"><a class="page-link" href="/page/<%= pages+1 %>">Last Page</a></li>
               </ul>
 </div>
